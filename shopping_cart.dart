@@ -12,21 +12,27 @@ main() {
       print("=== ended the program ===");
       condition = false;
     } else if (text == "print") {
-      for (var i = 0; i < products.length; i++) {
-        print("ITEM $i - ${products[i]}");
-      }
+      printItems(products);
     } else if (text == "delete") {
-      print("=== Which item do you want to delete?");
-      for (var i = 0; i < products.length; i++) {
-        print("ITEM $i - ${products[i]}");
-      }
-      int item = int.parse(stdin.readLineSync()!);
-      products.removeAt(item);
-      print("=== Deleted item");
+      deleteItems(products);
     } else {
       products.add(text);
 
       print("\x1B[2J\x1B[0;0H");
     }
   }
+}
+
+printItems(items) {
+  for (var i = 0; i < items.length; i++) {
+    print("ITEM $i - ${items[i]}");
+  }
+}
+
+deleteItems(items) {
+  print("=== Which item do you want to delete?");
+  printItems(items);
+  int item = int.parse(stdin.readLineSync()!);
+  items.removeAt(item);
+  print("=== Deleted item");
 }
